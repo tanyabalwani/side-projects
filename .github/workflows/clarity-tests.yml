@@ -24,5 +24,6 @@ jobs:
       - run: python tests/test_core.py
       - run: python tests/test_api.py
       - run: python tests/test_decks.py
+      - run: python tests/test_sample.py
       - name: JavaScript syntax check
         run: for f in app/js/*.js; do node --check "$f"; done

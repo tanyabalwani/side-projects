@@ -9,6 +9,14 @@ pip install -r requirements.txt
 python3 server.py --open   # Python 3.11 or newer
 ```
 
+To click through with ready-made content first, load the sample project (a filled-in brief, a mind map with evidence, source notes, and three small decks for the Story board):
+
+```bash
+python3 sample.py
+```
+
+Then start the server and open "Sample: Berlin platform migration" from Projects. Run `python3 sample.py --force` to reset it, and delete it from Projects when you are done.
+
 The terminal prints a link with a one-time token. Open that link; the token becomes a session cookie. Without it every request is refused.
 
 ## The journey
@@ -90,10 +98,11 @@ Be clear about the limits before relying on it for something they matter to:
 python3 tests/test_core.py
 python3 tests/test_api.py
 python3 tests/test_decks.py
+python3 tests/test_sample.py
 ```
 
 They cover the consent and redaction gates, citation validation, encryption at rest, the linter, the export fit check, native chart and table output, template handling, the review gate, scope enforcement, upload and link guards, authentication, CSRF, and path traversal.
 
 ## Layout of the code
 
-`server.py` HTTP and routes · `decks.py` deck import, organising and flow suggestions · `store.py` schema, sanitising, encryption, versions, audit · `ingest.py` and `safety.py` file and link intake and scanning · `retrieval.py` chunking, BM25, knowledge base · `ai.py` models, prompts, rule-based fallbacks · `deck.py` storyline and slide generation · `review.py` quality checks · `export.py` PPTX, DOCX, Markdown, HTML · `frameworks.py` · `style.py` · `app/` the browser UI.
+`sample.py` demo project loader · `server.py` HTTP and routes · `decks.py` deck import, organising and flow suggestions · `store.py` schema, sanitising, encryption, versions, audit · `ingest.py` and `safety.py` file and link intake and scanning · `retrieval.py` chunking, BM25, knowledge base · `ai.py` models, prompts, rule-based fallbacks · `deck.py` storyline and slide generation · `review.py` quality checks · `export.py` PPTX, DOCX, Markdown, HTML · `frameworks.py` · `style.py` · `app/` the browser UI.
