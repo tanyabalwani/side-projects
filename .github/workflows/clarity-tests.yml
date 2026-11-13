@@ -1,0 +1,28 @@
+name: clarity tests
+on:
+  push:
+    paths: ["clarity/**", ".github/workflows/clarity-tests.yml"]
+  pull_request:
+    paths: ["clarity/**", ".github/workflows/clarity-tests.yml"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: clarity
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: clarity/requirements.txt
+      - run: pip install -r requirements.txt
+      - run: python tests/test_core.py
+      - run: python tests/test_api.py
+      - run: python tests/test_decks.py
+      - name: JavaScript syntax check
+        run: for f in app/js/*.js; do node --check "$f"; done
